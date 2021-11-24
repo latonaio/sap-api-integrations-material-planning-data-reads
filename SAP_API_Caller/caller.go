@@ -24,9 +24,6 @@ func NewSAPAPICaller(baseUrl string, l *logger.Logger) *SAPAPICaller {
 	}
 }
 
-    caller.AsyncGetMaterialPlanningData(
-        inoutSDC.MRPElementDocumentType.Material.MRPPlant,
-
 
 func (c *SAPAPICaller) AsyncGetMaterialPlanningData(MRPElementDocumentType, Material, MRPPlant string) {
 	wg := &sync.WaitGroup{}
