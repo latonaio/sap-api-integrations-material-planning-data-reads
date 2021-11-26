@@ -6,7 +6,7 @@ type MaterialPlanningDataReads struct {
 	RedisKey             string `json:"redis_key"`
 	Filepath             string `json:"filepath"`
 	APISchema            string `json:"api_schema"`
-	Material             string `json:"material_code"`
+	MaterialCode         string `json:"material_code"`
 	MRPPlant             string `json:"plant"`
 	Deleted              string `json:"deleted"`    
 }

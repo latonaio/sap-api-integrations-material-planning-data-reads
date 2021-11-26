@@ -42,7 +42,7 @@ type EC_MC struct {
 		} `json:"work"`
 	} `json:"production_order"`
 	APISchema                      string      `json:"api_schema"`
-	Material                       string      `json:"material_code"`
+	MaterialCode                   string      `json:"material_code"`
 	MRPPlant                       string      `json:"plant/supplier"`
 	Stock                          float64     `json:"stock"`
 	MRPElementDocumentType         string      `json:"document_type"`
@@ -92,7 +92,7 @@ type SDC struct {
 		MRPElementIsReleased           string      `json:"MRPElementIsReleased"`
 	} `json:"MaterialPlanningData"`
 	APISchema    string `json:"api_schema"`
-	Material     string `json:"material_code"`
+	MaterialCode string `json:"material_code"`
 	MRPPlant     string `json:"plant"`
 	Deleted      string `json:"deleted"`
 }
