@@ -20,7 +20,7 @@ type MaterialPlanningData struct {
 	MRPPlanningSegmentType         string `json:"MRPPlanningSegmentType"`
 	MRPElement                     string `json:"MRPElement"`
 	MRPElementItem                 string `json:"MRPElementItem"`
-	HasAcceptedShortage            string `json:"HasAcceptedShortage"`
+	HasAcceptedShortage            bool   `json:"HasAcceptedShortage"`
 	TimeHorizonInDays              string `json:"TimeHorizonInDays"`
 	MaterialShortageDuration       string `json:"MaterialShortageDuration"`
 	MaterialShortageDurnInWorkdays string `json:"MaterialShortageDurnInWorkdays"`
