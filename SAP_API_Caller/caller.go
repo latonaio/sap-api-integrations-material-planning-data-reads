@@ -4,10 +4,12 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	sap_api_output_formatter "sap-api-integrations-material-planning-data-reads/SAP_API_Output_Formatter"
 	"strings"
 	"sync"
 
 	"github.com/latonaio/golang-logging-library/logger"
+	"golang.org/x/xerrors"
 )
 
 type SAPAPICaller struct {
@@ -24,48 +26,54 @@ func NewSAPAPICaller(baseUrl string, l *logger.Logger) *SAPAPICaller {
 	}
 }
 
-
-func (c *SAPAPICaller) AsyncGetMaterialPlanningData(MRPElementDocumentType, Material, MRPPlant string) {
+func (c *SAPAPICaller) AsyncGetMaterialPlanningData(mRPElementDocumentType, material, mRPPlant string) {
 	wg := &sync.WaitGroup{}
 
 	wg.Add(1)
-	go func() {
-		c.MaterialPlanningData(MRPElementDocumentType, Material, MRPPlant)
+	func() {
+		c.MRPItem(mRPElementDocumentType, material, mRPPlant)
 		wg.Done()
 	}()
 	wg.Wait()
 }
 
-func (c *SAPAPICaller) MaterialPlanningData(MRPElementDocumentType, Material, MRPPlant string) {
-	res, err := c.callMaterialPlanningDataSrvAPIRequirement("SupplyDemandItems", MRPElementDocumentType, Material, MRPPlant)
+func (c *SAPAPICaller) MRPItem(mRPElementDocumentType, material, mRPPlant string) {
+	data, err := c.callMaterialPlanningDataSrvAPIRequirementMRPItem("SupplyDemandItems", mRPElementDocumentType, material, mRPPlant)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
-
-	c.log.Info(res)
-
+	c.log.Info(data)
 }
 
-func (c *SAPAPICaller) callMaterialPlanningDataSrvAPIRequirement(api, MRPElementDocumentType, Material, MRPPlant string) ([]byte, error) {
+func (c *SAPAPICaller) callMaterialPlanningDataSrvAPIRequirementMRPItem(api, mRPElementDocumentType, material, mRPPlant string) ([]sap_api_output_formatter.MRPItem, error) {
 	url := strings.Join([]string{c.baseURL, "API_MRP_MATERIALS_SRV_01", api}, "/")
 	req, _ := http.NewRequest("GET", url, nil)
 
-	params := req.URL.Query()
-	// params.Add("$select", "MRPElementDocumentType, Material, MRPPlant")
-	params.Add("$filter", fmt.Sprintf("MRPElementDocumentType eq '%s' and Material eq '%s' and MRPPlant eq '%s'", MRPElementDocumentType, Material, MRPPlant))
-	req.URL.RawQuery = params.Encode()
+	c.setHeaderAPIKeyAccept(req)
+	c.getQueryWithMRPItem(req, mRPElementDocumentType, material, mRPPlant)
 
-	req.Header.Set("APIKey", c.apiKey)
-	req.Header.Set("Accept", "application/json")
-
-	client := new(http.Client)
-	resp, err := client.Do(req)
+	resp, err := new(http.Client).Do(req)
 	if err != nil {
-		return nil, err
+		return nil, xerrors.Errorf("API request error: %w", err)
 	}
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	return byteArray, nil
+	data, err := sap_api_output_formatter.ConvertToMRPItem(byteArray, c.log)
+	if err != nil {
+		return nil, xerrors.Errorf("convert error: %w", err)
+	}
+	return data, nil
+}
+
+func (c *SAPAPICaller) setHeaderAPIKeyAccept(req *http.Request) {
+	req.Header.Set("APIKey", c.apiKey)
+	req.Header.Set("Accept", "application/json")
+}
+
+func (c *SAPAPICaller) getQueryWithMRPItem(req *http.Request, mRPElementDocumentType, material, mRPPlant string) {
+	params := req.URL.Query()
+	params.Add("$filter", fmt.Sprintf("MRPElementDocumentType eq '%s' and Material eq '%s' and MRPPlant eq '%s'", mRPElementDocumentType, material, mRPPlant))
+	req.URL.RawQuery = params.Encode()
 }
