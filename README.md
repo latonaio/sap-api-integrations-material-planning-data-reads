@@ -71,7 +71,7 @@ func (c *SAPAPICaller) AsyncGetMaterialPlanningData(MRPElementDocumentType, Mate
 ## Output  
 本マイクロサービスでは、[golang-logging-library](https://github.com/latonaio/golang-logging-library) により、以下のようなデータがJSON形式で出力されます。   
 以下の sample.json の例は、SAP MRPデータ が取得された結果の JSON の例です。  
-以下の項目のうち、"Batch" ～ "Supplier" は、/SAP_API_Output_Formatter/type.go 内 の type Batch struct {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。    
+以下の項目のうち、"MRPElementDocumentType" ～ "MRPElementIsReleased" は、/SAP_API_Output_Formatter/type.go 内 の type Batch struct {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。    
 
 ```
 {
