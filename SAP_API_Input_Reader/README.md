@@ -1,2 +1,0 @@
-## type.go
-type.go は、[rededge](https://github.com/latonaio/rededge) の [EC_MC_sample_material_planning_data_reads.json](https://github.com/latonaio/rededge/blob/main/samples/EC_MC_sample_material_planning_data_reads.json) と、[SDC_Material_Planning_Data_sample.json](https://github.com/latonaio/rededge/blob/main/samples/SDC_Material_Planning_Data_sample.json) を [こちら](https://mholt.github.io/json-to-go/) のツールでコンバートしたうえで、加工を加えたものです。
