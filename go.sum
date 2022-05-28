@@ -1,4 +1,10 @@
-github.com/latonaio/golang-logging-library v1.0.7 h1:Swve+j56ZSn2l3Zsc8qs23isyfuz6TQCRADmdh1qNAQ=
-github.com/latonaio/golang-logging-library v1.0.7/go.mod h1:k9d98p3JsNZzDxqPpLPgiVFBXvPV6Urj3iSZqR7x0jw=
-golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 h1:go1bK/D/BFZV2I8cIQd1NKEZ+0owSTG1fDTci4IqFcE=
-golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
+github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
+github.com/latonaio/golang-logging-library-for-sap v1.0.4 h1:06EyuMESuXLklP2XT98FJqvM47HOlHc2d5Fxrnuw3As=
+github.com/latonaio/golang-logging-library-for-sap v1.0.4/go.mod h1:Q6N2Fey+UaTk1tXogQ3/e3rdhPhsf21wqsFDdOkihcI=
+github.com/latonaio/sap-api-time-value-converter v1.0.4 h1:Tb/SgE6ywzq9G6tYGEviaCcurt4/d7VDJ8hk40Zu0YA=
+github.com/latonaio/sap-api-time-value-converter v1.0.4/go.mod h1:xyJX2ryAslZ55cri+Ys0bR2N0WdhrlDFovD18QGE8u8=
+github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
+github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=
+golang.org/x/xerrors v0.0.0-20220517211312-f3a8303e98df h1:5Pf6pFKu98ODmgnpvkJ3kFUOQGGLIzLIkbzUHp47618=
+golang.org/x/xerrors v0.0.0-20220517211312-f3a8303e98df/go.mod h1:K8+ghG5WaK9qNqU5K3HdILfMLy1f3aNYFI/wnl100a8=
+gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c h1:dUUwHk2QECo/6vqA44rthZ8ie2QXMNeKRTHCNY2nXvo=
