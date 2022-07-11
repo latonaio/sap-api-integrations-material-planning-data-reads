@@ -7,7 +7,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/latonaio/golang-logging-library/logger"
+	"github.com/latonaio/golang-logging-library-for-sap/logger"
 )
 
 type SAPAPICaller struct {

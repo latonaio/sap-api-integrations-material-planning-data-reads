@@ -32,7 +32,7 @@ func (*FileReader) ReadECMC(path string) EC_MC {
 func (*FileReader) ReadSDC(path string) SDC {
 	raw, err := ioutil.ReadFile(path)
 	if err != nil {
-		fmt.Printf("input data read error :%#v", err.Error())
+		fmt.Printf("input data marshal error :%#v", err.Error())
 		os.Exit(1)
 	}
 	sdc := SDC{}
